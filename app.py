@@ -8,7 +8,7 @@ class App(Frame):
         self.parent.title('Sorting Visualization')
         self.parent.geometry(
             '{}x{}+{}+{}'.format(self.parent.winfo_screenwidth(),
-                                 self.parent.winfo_screenheight(), 500, 500))
+                                 self.parent.winfo_screenheight(), 0, 0))
         self.quit_button = None
         self.sort_button = None
         self.scale_arr_size = None
@@ -51,6 +51,7 @@ class App(Frame):
         self.select_sorting.destroy()
 
     def set_ui(self):
+        self.arr_size.set(20)
         self.pack(fill=BOTH, expand=1)
         self.quit_button = Button(self, text="Quit", command=self.quit)
         self.quit_button.place(x=5, y=10)
