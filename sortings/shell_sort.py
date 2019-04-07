@@ -1,7 +1,7 @@
 from sortings import sorting
 
 
-class ShellSort(sorting.Sorting):
+class ShellSort(sorting.BaseSorting):
     def __init__(self, board):
         super().__init__(board)
         self.shell_sort()

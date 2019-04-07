@@ -2,7 +2,7 @@ from sortings import sorting
 import copy
 
 
-class QuickSort(sorting.Sorting):
+class QuickSort(sorting.BaseSorting):
     def __init__(self, board):
         super().__init__(board)
         self.quick_sort(0, len(self.random_array) - 1)
@@ -22,11 +22,10 @@ class QuickSort(sorting.Sorting):
         i = first
         j = last - 1
         while i <= j:
-            while (self.random_array[i] < pivot and i < last and
-                    self.compare()):
+            self.compare()
+            while self.random_array[i] < pivot and i < last:
                 i += 1
-            while (self.random_array[j] >= pivot and j >= first and
-                    self.compare()):
+            while self.random_array[j] >= pivot and j >= first:
                 j -= 1
             if i < j:
                 self.swap(i, j)

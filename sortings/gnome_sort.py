@@ -1,7 +1,7 @@
 from sortings import sorting
 
 
-class GnomeSort(sorting.Sorting):
+class GnomeSort(sorting.BaseSorting):
     def __init__(self, board):
         super().__init__(board)
         self.gnome_sort()
@@ -11,8 +11,9 @@ class GnomeSort(sorting.Sorting):
         while True:
             if i == len(self.random_array) - 1:
                 break
-            if (self.random_array[i] > self.random_array[i + 1] and
-                    self.compare()):
+
+            self.compare()
+            if self.random_array[i] > self.random_array[i + 1]:
                 self.swap(i, i + 1)
                 if i != 0:
                     i -= 2

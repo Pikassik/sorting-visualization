@@ -51,7 +51,6 @@ class App(Frame):
         self.select_sorting.destroy()
 
     def set_ui(self):
-        self.arr_size.set(20)
         self.pack(fill=BOTH, expand=1)
         self.quit_button = Button(self, text="Quit", command=self.quit)
         self.quit_button.place(x=5, y=10)
