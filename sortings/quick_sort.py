@@ -5,6 +5,8 @@ import copy
 class QuickSort(sorting.BaseSorting):
     def __init__(self, board):
         super().__init__(board)
+
+    def sort(self):
         self.quick_sort(0, len(self.random_array) - 1)
 
     def quick_sort(self, first, last):
@@ -22,14 +24,14 @@ class QuickSort(sorting.BaseSorting):
         i = first
         j = last - 1
         while i <= j:
-            self.compare()
+            self.board.update()
             while self.random_array[i] < pivot and i < last:
                 i += 1
             while self.random_array[j] >= pivot and j >= first:
                 j -= 1
             if i < j:
-                self.swap(i, j)
+                self.board.swap(i, j)
                 i += 1
                 j -= 1
-        self.swap(i, last)
+        self.board.swap(i, last)
         return i

@@ -49,7 +49,8 @@ class Board(Canvas):
                                                     self.height, fill='white',
                                                     width=0)
         self.pack(side=TOP, expand=1, fill=BOTH)
-        self.sortings[self.sort_type](self)
+        sorting = self.sortings[self.sort_type](self)
+        sorting.sort()
         sleep(2.)
 
     def swap(self, i, j):
@@ -67,7 +68,7 @@ class Board(Canvas):
         self.parent.update()
         sleep(0.0005 * self.delay)
 
-    def assignment(self, i, value):
+    def assign(self, i, value):
         self.delete(self.columns[i])
         self.random_array[i] = value
         self.columns[i] = self.create_rectangle(self.gap * i,
@@ -79,6 +80,6 @@ class Board(Canvas):
         self.parent.update()
         sleep(0.0005 * self.delay)
 
-    def compare(self):
+    def update(self):
         self.parent.update()
         sleep(0.0001 * self.delay)
