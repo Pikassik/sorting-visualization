@@ -33,16 +33,16 @@ class App(Frame):
         self.arr_size.set(value)
 
     def start_sorting(self):
+        self.destroy_ui()
         try:
-            self.destroy_ui()
             board = Board(self.parent, self.selected_sorting.get(),
                           self.parent.winfo_screenwidth(),
                           self.parent.winfo_screenheight() - 75,
                           self.arr_size.get())
             board.destroy()
-            self.set_ui()
         except (ArithmeticError, MemoryError):
-            quit()
+            pass
+        self.set_ui()
 
     def destroy_ui(self):
         self.quit_button.destroy()
