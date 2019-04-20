@@ -27,6 +27,16 @@ class Board(Canvas):
         self.random_array = [random.randint(1, self.height) for i in
                              range(self.arr_size)]
         self.columns = {}
+        self.sortings = {
+            "Bubble sort": sortings.bubble_sort.BubbleSort,
+            "Insertion sort": sortings.insertion_sort.InsertionSort,
+            "Shaker sort": sortings.shaker_sort.ShakerSort,
+            "Gnome sort": sortings.gnome_sort.GnomeSort,
+            "Selection sort": sortings.selection_sort.SelectionSort,
+            "Shell sort": sortings.shell_sort.ShellSort,
+            "Quick sort": sortings.quick_sort.QuickSort,
+            "Heap sort": sortings.heap_sort.HeapSort,
+            "Merge sort": sortings.merge_sort.MergeSort}
         self.init_board()
 
     def init_board(self):
@@ -39,24 +49,8 @@ class Board(Canvas):
                                                     self.height, fill='white',
                                                     width=0)
         self.pack(side=TOP, expand=1, fill=BOTH)
-        if self.sort_type == "Insertion sort":
-            insertion_sort = sortings.insertion_sort.InsertionSort(self)
-        elif self.sort_type == "Shaker sort":
-            shaker_sort = sortings.shaker_sort.ShakerSort(self)
-        elif self.sort_type == "Gnome sort":
-            gnome_sort = sortings.gnome_sort.GnomeSort(self)
-        elif self.sort_type == "Selection sort":
-            selection_sort = sortings.selection_sort.SelectionSort(self)
-        elif self.sort_type == "Shell sort":
-            shell_sort = sortings.shell_sort.ShellSort(self)
-        elif self.sort_type == "Quick sort":
-            quick_sort = sortings.quick_sort.QuickSort(self)
-        elif self.sort_type == "Heap sort":
-            heap_sort = sortings.heap_sort.HeapSort(self)
-        elif self.sort_type == "Merge sort":
-            merge_sort = sortings.merge_sort.MergeSort(self)
-        else:
-            bubble_sort = sortings.bubble_sort.BubbleSort(self)
+        sorting = self.sortings[self.sort_type](self)
+        sorting.sort()
         sleep(2.)
 
     def swap(self, i, j):
@@ -74,7 +68,7 @@ class Board(Canvas):
         self.parent.update()
         sleep(0.0005 * self.delay)
 
-    def assignment(self, i, value):
+    def assign(self, i, value):
         self.delete(self.columns[i])
         self.random_array[i] = value
         self.columns[i] = self.create_rectangle(self.gap * i,
@@ -86,7 +80,6 @@ class Board(Canvas):
         self.parent.update()
         sleep(0.0005 * self.delay)
 
-    def compare(self):
+    def update(self):
         self.parent.update()
         sleep(0.0001 * self.delay)
-        return True

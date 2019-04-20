@@ -1,12 +1,11 @@
 from sortings import sorting
 
 
-class ShellSort(sorting.Sorting):
+class ShellSort(sorting.BaseSorting):
     def __init__(self, board):
         super().__init__(board)
-        self.shell_sort()
     
-    def shell_sort(self):
+    def sort(self):
         i = j = k = 0
         k = len(self.random_array) // 2
         while k > 0:
@@ -16,10 +15,10 @@ class ShellSort(sorting.Sorting):
                 j = i
                 while j >= k:
                     if t < self.random_array[j - k]:
-                        self.assignment(j, self.random_array[j - k])
+                        self.board.assign(j, self.random_array[j - k])
                     else:
                         break
                     j -= k
-                self.assignment(j, t)
+                self.board.assign(j, t)
                 i += 1
             k //= 2

@@ -8,7 +8,7 @@ class App(Frame):
         self.parent.title('Sorting Visualization')
         self.parent.geometry(
             '{}x{}+{}+{}'.format(self.parent.winfo_screenwidth(),
-                                 self.parent.winfo_screenheight(), 500, 500))
+                                 self.parent.winfo_screenheight(), 0, 0))
         self.quit_button = None
         self.sort_button = None
         self.scale_arr_size = None
@@ -40,8 +40,8 @@ class App(Frame):
                           self.parent.winfo_screenheight() - 75,
                           self.arr_size.get())
             board.destroy()
-        except Exception as e:
-            exit()
+        except (ArithmeticError, MemoryError):
+            pass
         self.set_ui()
 
     def destroy_ui(self):
